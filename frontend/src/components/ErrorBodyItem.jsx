@@ -8,6 +8,10 @@ const ErrorBodyItem = ({ dataRow, updateTempsAndRemoveErrors }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    if (name === "netSalary" || name === "age") {
+      isNaN(value) && toastifyWarning("Lütfen Number Değer Giriiniz");
+    }
+
     const updatedData = {
       ...updatedDataRow,
       [name]: name === "age" || name === "netSalary" ? Number(value) : value,
@@ -64,7 +68,9 @@ const ErrorBodyItem = ({ dataRow, updateTempsAndRemoveErrors }) => {
       <ErrorsInfoTableData
         handleChange={handleChange}
         name={"bloodType"}
-        value={updatedDataRow?.bloodType === 0 ? "0" : updatedDataRow?.bloodType}
+        value={
+          updatedDataRow?.bloodType === 0 ? "0" : updatedDataRow?.bloodType
+        }
         errorClass={
           updatedDataRow.bloodType === undefined ||
           updatedDataRow.bloodType === ""
@@ -72,7 +78,7 @@ const ErrorBodyItem = ({ dataRow, updateTempsAndRemoveErrors }) => {
             : "bg-success"
         }
       />
-      
+
       <td className="bg-primary">
         <div onClick={updateErrorExcel} className="errorUpdate">
           Update
