@@ -8,7 +8,7 @@ const MatchKeys = ({ matchesData, submit }) => {
   return (
     <div
       style={{
-        padding: "2rem",
+        padding: "3rem",
         textAlign: "center",
         boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)",
         borderRadius: "8px",

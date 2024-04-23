@@ -26,7 +26,7 @@ const ExcelColumnSelectForm = ({ matchesData, onUpdate }) => {
             justifyContent: "space-between",
             alignItems: "center",
             margin: "1rem",
-            minWidth: "300px",
+            minWidth: "350px",
           }}
           key={index}
         >
