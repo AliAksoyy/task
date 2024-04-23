@@ -60,17 +60,22 @@ const testExcel = async (fileName, matches) => {
 
     const pers = {
       id: Math.random().toString().split(".")[1],
-      dynamics: {},
+      // dynamics: {},
     };
 
-    Object.keys(matchedKeys).forEach((key) => {
-      if (matches[key] === "empty") {
+    Object.entries(matchedKeys).forEach(([key, value]) => {
+      if (value === "empty") {
         pers[key] = newPersonelSchema[key] || "";
+      } else {
+        pers[key] = personel[value];
       }
+      console.log(pers);
 
-      // else if (typeof personel[matches[key]] !== "undefined") {
-      //   pers[key] = personel[matches[key]];
-      // } else if (
+      // else if (typeof personel[value] !== "undefined") {
+      //   pers[key] = personel[value];
+      // }
+
+      //else if (
       //   typeof personel[matches[key]] != typeof newPersonelSchema.firstName ||
       //   typeof personel[matches[key]] != typeof newPersonelSchema.lastName ||
       //   typeof personel[matches[key]] !=
@@ -80,7 +85,8 @@ const testExcel = async (fileName, matches) => {
       //     personel[matches[key]] != 0)
       // ) {
       //   isValid = false;
-      // } else {
+      // }
+      //else {
       //   pers.dynamics[key] = personel[key];
       // }
     });
