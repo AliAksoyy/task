@@ -23,9 +23,7 @@ const testExcel = async (fileName, matches) => {
       E: "bloodType",
     },
   });
-
-  console.log("aaa", result);
-
+  console.log("matches", matches);
   const errors = [];
   const temps = [];
 
@@ -77,7 +75,7 @@ const testExcel = async (fileName, matches) => {
     //   isValid = false;
     // }
     if (!isValid) {
-      errors.push(personel);
+      errors.push(pers);
     } else {
       temps.push(pers);
       // temps.push({
