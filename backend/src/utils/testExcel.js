@@ -58,7 +58,7 @@ const testExcel = async (fileName, matches) => {
     }
 
     if (!isValid) {
-      errors.push(personel);
+      errors.push(pers);
     } else {
       temps.push(pers);
     }
