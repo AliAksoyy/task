@@ -60,7 +60,6 @@ const testExcel = async (fileName, matches) => {
 
     const pers = {
       id: Math.random().toString().split(".")[1],
-      // dynamics: {},
     };
 
     Object.entries(matchedKeys).forEach(([key, value]) => {
@@ -69,10 +68,14 @@ const testExcel = async (fileName, matches) => {
       } else {
         pers[key] = personel[value];
       }
-      console.log(pers);
     });
+
     for (const key in pers) {
-      if (typeof pers[key] !== "string" && typeof pers[key] !== "number") {
+      if (
+        (typeof pers[key] !== "string" && typeof pers[key] !== "number") ||
+        (key == "age" && typeof pers[key] !== "number") ||
+        (key == "salaryAmount" && typeof pers[key] !== "number")
+      ) {
         isValid = false;
         break;
       }
