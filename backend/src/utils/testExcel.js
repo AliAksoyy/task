@@ -31,6 +31,8 @@ const testExcel = async (fileName, matches) => {
 
   const matchedKeys = matchKeys(matches, customKey);
 
+  console.log("matchedKeys", matchedKeys);
+
   result.Sayfa1.slice(1).forEach((personel) => {
     let isValid = true;
 
@@ -63,8 +65,7 @@ const testExcel = async (fileName, matches) => {
       temps.push(pers);
     }
   });
-  console.log(temps);
-  console.log(errors);
+
   return { errors, temps };
 };
 
