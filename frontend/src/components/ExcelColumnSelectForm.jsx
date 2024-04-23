@@ -26,7 +26,7 @@ const ExcelColumnSelectForm = ({ matchesData, onUpdate }) => {
               onChange={(e) => handleSelectChange(dbKey, e.target.value)}
             >
               <option value="">Select a key</option>
-              {["empty", ...matchesData.excelKeys]?.map((key, index) => (
+              {["Default", ...matchesData.excelKeys]?.map((key, index) => (
                 <option key={index} value={key}>
                   {key}
                 </option>

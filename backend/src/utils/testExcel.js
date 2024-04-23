@@ -1,5 +1,6 @@
 const excelToJson = require("convert-excel-to-json");
 const path = require("path");
+const { matchKeys } = require("./matchedKeys");
 
 const newPersonelSchema = {
   id: "", // unique identifier
@@ -28,32 +29,7 @@ const testExcel = async (fileName, matches) => {
 
   const customKey = result.Sayfa1[0];
 
-  const matchedKeys = {};
-
-  for (const matchKey in matches) {
-    // Her bir customKey öğesini döngü içinde ele alın
-
-    let foundMatch = false;
-    for (const customKeyKey in customKey) {
-      // Eğer matches öğesinin değeri, customKey öğesinin değerine eşitse
-      if (!Object.values(matches).includes(customKey[customKeyKey])) {
-        // matchedKeys nesnesine ekleyin
-        matchedKeys[customKeyKey] = customKeyKey;
-      }
-
-      if (matches[matchKey] === customKey[customKeyKey]) {
-        // Eşleşen anahtarı matchedKeys nesnesine ekle
-        matchedKeys[matchKey] = customKeyKey;
-        foundMatch = true;
-        // İç içe döngüden çık
-        break;
-      }
-    }
-    if (!foundMatch) {
-      // Eğer eşleşme bulunamadıysa, "empty" değerini ata
-      matchedKeys[matchKey] = "empty";
-    }
-  }
+  const matchedKeys = matchKeys(matches, customKey);
 
   result.Sayfa1.slice(1).forEach((personel) => {
     let isValid = true;
@@ -63,7 +39,7 @@ const testExcel = async (fileName, matches) => {
     };
 
     Object.entries(matchedKeys).forEach(([key, value]) => {
-      if (value === "empty") {
+      if (value === "Default") {
         pers[key] = newPersonelSchema[key] || "";
       } else {
         pers[key] = personel[value];
