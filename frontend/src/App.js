@@ -48,7 +48,6 @@ function App() {
     }
   };
   const matchesKey = async (matchesColumns) => {
-    console.log("matchesColumns", matchesColumns);
     dispatch(
       uploadExcel({ matches: matchesColumns, fileName: matches.fileName })
     );

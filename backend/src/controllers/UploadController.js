@@ -3,8 +3,6 @@ const path = require("path");
 const testExcel = require("../utils/testExcel");
 const fs = require("fs");
 const excelToJson = require("convert-excel-to-json");
-const testExcel1 = require("../utils/testExcel1");
-const testExcel2 = require("../utils/testExcel2");
 
 class UploadController {
   static uploadExcel = expressAsyncHandler(async (req, res) => {

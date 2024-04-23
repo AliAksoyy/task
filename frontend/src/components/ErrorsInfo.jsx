@@ -10,10 +10,9 @@ const ErrorsInfo = ({ errors }) => {
   const { excelKeys } = useSelector((state) => state.matches.matches);
 
   useEffect(() => {
-    setTableColumns([...excelKeys,"Update"]);
+    setTableColumns([...excelKeys, "Update"]);
   }, [excelKeys]);
 
-  console.log(excelKeys);
   const updateTempsAndRemoveErrors = (updatedDataRow) => {
     dispatch(updateData(updatedDataRow));
   };
