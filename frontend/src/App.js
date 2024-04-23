@@ -90,7 +90,7 @@ function App() {
           }}
         >
           <ErrorsInfo errors={errors} />
-          <TempsInfo src={temps} />
+          <TempsInfo src={temps} setTemps={setTemps} />
         </div>
       )}
     </div>
