@@ -70,51 +70,18 @@ const testExcel = async (fileName, matches) => {
         pers[key] = personel[value];
       }
       console.log(pers);
-
-      // else if (typeof personel[value] !== "undefined") {
-      //   pers[key] = personel[value];
-      // }
-
-      //else if (
-      //   typeof personel[matches[key]] != typeof newPersonelSchema.firstName ||
-      //   typeof personel[matches[key]] != typeof newPersonelSchema.lastName ||
-      //   typeof personel[matches[key]] !=
-      //     typeof newPersonelSchema.salaryAmount ||
-      //   typeof personel[matches[key]] != "number" ||
-      //   (typeof personel[matches[key]] != "string" &&
-      //     personel[matches[key]] != 0)
-      // ) {
-      //   isValid = false;
-      // }
-      //else {
-      //   pers.dynamics[key] = personel[key];
-      // }
     });
+    for (const key in pers) {
+      if (typeof pers[key] !== "string" && typeof pers[key] !== "number") {
+        isValid = false;
+        break;
+      }
+    }
 
-    // if (
-    //   typeof personel.personelName != typeof newPersonelSchema.firstName ||
-    //   typeof personel.personelSurname != typeof newPersonelSchema.lastName ||
-    //   typeof personel.netSalary != typeof newPersonelSchema.salaryAmount ||
-    //   typeof personel.age != "number" ||
-    //   (typeof personel.bloodType != "string" && personel.bloodType != 0)
-    // ) {
-    //   isValid = false;
-    // }
     if (!isValid) {
       errors.push(personel);
     } else {
       temps.push(pers);
-      // temps.push({
-      //   id: Math.random().toString().split(".")[1],
-      //   [firstName]: personel.personelName,
-      //   lastName: personel.personelSurname,
-      //   salaryType: "TL", // default
-      //   salaryAmount: personel.netSalary, // required
-      //   annualLeaveLimit: 15, // default
-      //   emailAddress: null, // default
-      //   age: personel.age,
-      //   bloodType: personel.bloodType,
-      // });
     }
   });
 
