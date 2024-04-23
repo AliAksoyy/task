@@ -63,7 +63,8 @@ const testExcel = async (fileName, matches) => {
       temps.push(pers);
     }
   });
-
+  console.log(temps);
+  console.log(errors);
   return { errors, temps };
 };
 
