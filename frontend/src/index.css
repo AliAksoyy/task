@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.upload {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+
+input[type="file"] {
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.errorUpdate {
+  padding: 0px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.errorUpdate:hover {
+  background-color: #0056b3;
+}
+td.bg-success input {
+  color: #fff;
+}
+td.bg-success input:focus {
+  outline: 0;
+  background: #007bff !important;
+  color: #fff;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+td.bg-danger input {
+  color: #fff;
+}
+td.bg-danger input:focus {
+  outline: 0;
+  background: #ca310a !important;
+  color: #fff;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.input {
+  border: none;
+  background: none;
+  text-align: center;
+  user-select: transparent;
+  color: #333;
+}
+
+.table-container {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  box-sizing: border-box;
+}
