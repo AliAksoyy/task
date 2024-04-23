@@ -1,10 +1,17 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ErrorBodyItem from "./ErrorBodyItem";
 import { updateData } from "../features/uploads/uploadSlice";
 
 const ErrorsInfo = ({ errors }) => {
   const dispatch = useDispatch();
+  const [tableColumns, setTableColumns] = useState([]);
+
+  const { excelKeys } = useSelector((state) => state.matches.matches);
+
+  useEffect(() => {
+    setTableColumns([...excelKeys, "Update"]);
+  }, [excelKeys]);
 
   const updateTempsAndRemoveErrors = (updatedDataRow) => {
     dispatch(updateData(updatedDataRow));
@@ -19,12 +26,13 @@ const ErrorsInfo = ({ errors }) => {
         <table className="table-container">
           <thead>
             <tr>
-              <th className="bg-warning">Personel name</th>
-              <th className="bg-warning">Personel surname</th>
-              <th className="bg-warning">Net Salary</th>
-              <th className="bg-warning">Age</th>
-              <th className="bg-warning">Blood Type</th>
-              <th className="bg-warning">Update</th>
+              {tableColumns?.map((item, index) => {
+                return (
+                  <th key={index} className="bg-warning">
+                    {item}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody style={{ textAlign: "center" }}>

@@ -18,7 +18,7 @@ const matchs = {
 };
 
 // if (typeof personel["A"] == typeof newPersonelSchema[A]) {
-//   console.log("here");
+
 // }
 
 const personel = {
@@ -32,7 +32,6 @@ const personel = {
 
 Object.keys(matchs).forEach((key) => {
   if (typeof personel[key] == typeof newPersonelSchema[matchs[key]]) {
-    // console.log("here");
     // push
   } else if (typeof newPersonelSchema[matchs[key]] == "undefined") {
     // default yazıp pushlama
