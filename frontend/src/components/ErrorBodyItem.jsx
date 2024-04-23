@@ -72,6 +72,7 @@ const ErrorBodyItem = ({ dataRow, updateTempsAndRemoveErrors }) => {
             : "bg-success"
         }
       />
+      
       <td className="bg-primary">
         <div onClick={updateErrorExcel} className="errorUpdate">
           Update
