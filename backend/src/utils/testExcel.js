@@ -12,7 +12,6 @@ const newPersonelSchema = {
 };
 
 const testExcel = async (fileName, matches) => {
-  console.log("matches", matches);
   const result = excelToJson({
     sourceFile: path.join(__dirname, "..", "uploads", fileName),
     columnToKey: {
@@ -33,9 +32,15 @@ const testExcel = async (fileName, matches) => {
 
   for (const matchKey in matches) {
     // Her bir customKey öğesini döngü içinde ele alın
+
     let foundMatch = false;
     for (const customKeyKey in customKey) {
       // Eğer matches öğesinin değeri, customKey öğesinin değerine eşitse
+      if (!Object.values(matches).includes(customKey[customKeyKey])) {
+        // matchedKeys nesnesine ekleyin
+        matchedKeys[customKeyKey] = customKeyKey;
+      }
+
       if (matches[matchKey] === customKey[customKeyKey]) {
         // Eşleşen anahtarı matchedKeys nesnesine ekle
         matchedKeys[matchKey] = customKeyKey;
@@ -50,8 +55,6 @@ const testExcel = async (fileName, matches) => {
     }
   }
 
-  console.log("matchedKeys", matchedKeys);
-
   result.Sayfa1.slice(1).forEach((personel) => {
     let isValid = true;
 
@@ -60,17 +63,7 @@ const testExcel = async (fileName, matches) => {
       dynamics: {},
     };
 
-    // Object.keys(matches).forEach((key) => {
-    //   if (typeof personel[key] == typeof newPersonelSchema[matches[key]]) {
-    //     pers[key] = personel[key];
-    //   } else if (typeof newPersonelSchema[matches[key]] == "undefined") {
-    //     pers.dynamics[key] = personel[key];
-    //   } else {
-    //     isValid = false;
-    //   }
-    // });
-
-    Object.keys(matches).forEach((key) => {
+    Object.keys(matchedKeys).forEach((key) => {
       if (matches[key] === "empty") {
         pers[key] = newPersonelSchema[key] || "";
       }
