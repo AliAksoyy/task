@@ -12,6 +12,7 @@ import { matchesExcel } from "./features/matches/asyncAction";
 function App() {
   const [excel, setExcel] = useState();
   const [show, setShow] = useState(false);
+  const [nestedShow, setNestedShow] = useState(false);
 
   const { loading } = useSelector((state) => state.upload);
   const excelData = useSelector((state) => state.upload.uploadData);
@@ -45,6 +46,7 @@ function App() {
 
       formData.append("file", excel);
       dispatch(matchesExcel(formData));
+      setShow(true);
     }
   };
   const matchesKey = async (matchesColumns) => {
@@ -52,6 +54,7 @@ function App() {
       uploadExcel({ matches: matchesColumns, fileName: matches.fileName })
     );
     setShow(true);
+    setNestedShow(true);
   };
 
   if (loading) {
@@ -68,13 +71,14 @@ function App() {
               setExcel(e.target.files[0]);
             }}
           />
-          <button onClick={sendFileToTest}>Kontrol Et Kayıt</button>
+          <button onClick={sendFileToTest}>Kontrol Et</button>
         </div>
       )}
+      {show && !nestedShow && (
+        <MatchKeys submit={matchesKey} matchesData={matchesData} />
+      )}
 
-      <MatchKeys submit={matchesKey} matchesData={matchesData} />
-
-      {excel && show && (
+      {excel && show && nestedShow && (
         <div
           style={{
             display: "flex",
