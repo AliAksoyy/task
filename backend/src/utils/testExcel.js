@@ -24,10 +24,33 @@ const testExcel = async (fileName, matches) => {
     },
   });
 
-  console.log("aaa", result);
-
   const errors = [];
   const temps = [];
+
+  const customKey = result.Sayfa1[0];
+
+  const matchedKeys = {};
+
+  for (const matchKey in matches) {
+    // Her bir customKey öğesini döngü içinde ele alın
+    let foundMatch = false;
+    for (const customKeyKey in customKey) {
+      // Eğer matches öğesinin değeri, customKey öğesinin değerine eşitse
+      if (matches[matchKey] === customKey[customKeyKey]) {
+        // Eşleşen anahtarı matchedKeys nesnesine ekle
+        matchedKeys[matchKey] = customKeyKey;
+        foundMatch = true;
+        // İç içe döngüden çık
+        break;
+      }
+    }
+    if (!foundMatch) {
+      // Eğer eşleşme bulunamadıysa, "empty" değerini ata
+      matchedKeys[matchKey] = "empty";
+    }
+  }
+
+  console.log("matchedKeys", matchedKeys);
 
   result.Sayfa1.slice(1).forEach((personel) => {
     let isValid = true;
@@ -50,21 +73,23 @@ const testExcel = async (fileName, matches) => {
     Object.keys(matches).forEach((key) => {
       if (matches[key] === "empty") {
         pers[key] = newPersonelSchema[key] || "";
-      } else if (typeof personel[matches[key]] !== "undefined") {
-        pers[key] = personel[matches[key]];
-      } else if (
-        typeof personel[matches[key]] != typeof newPersonelSchema.firstName ||
-        typeof personel[matches[key]] != typeof newPersonelSchema.lastName ||
-        typeof personel[matches[key]] !=
-          typeof newPersonelSchema.salaryAmount ||
-        typeof personel[matches[key]] != "number" ||
-        (typeof personel[matches[key]] != "string" &&
-          personel[matches[key]] != 0)
-      ) {
-        isValid = false;
-      } else {
-        pers.dynamics[key] = personel[key];
       }
+
+      // else if (typeof personel[matches[key]] !== "undefined") {
+      //   pers[key] = personel[matches[key]];
+      // } else if (
+      //   typeof personel[matches[key]] != typeof newPersonelSchema.firstName ||
+      //   typeof personel[matches[key]] != typeof newPersonelSchema.lastName ||
+      //   typeof personel[matches[key]] !=
+      //     typeof newPersonelSchema.salaryAmount ||
+      //   typeof personel[matches[key]] != "number" ||
+      //   (typeof personel[matches[key]] != "string" &&
+      //     personel[matches[key]] != 0)
+      // ) {
+      //   isValid = false;
+      // } else {
+      //   pers.dynamics[key] = personel[key];
+      // }
     });
 
     // if (

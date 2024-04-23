@@ -36,7 +36,7 @@ class UploadController {
   static test = expressAsyncHandler(async (req, res) => {
     const { matches, fileName } = req.body;
 
-    const response = await testExcel2(fileName, matches);
+    const response = await testExcel(fileName, matches);
 
     res.json({ success: true, data: response });
   });
