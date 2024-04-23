@@ -96,3 +96,7 @@ td.bg-danger input:focus {
   text-align: center;
   box-sizing: border-box;
 }
+
+form select {
+  font-size: 1.5rem !important;
+}
