@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErrorsInfoTableData = ({ handleChange, value, name, errorClass }) => {
+const ErrorsInfoTableDataCell = ({ handleChange, value, name, errorClass }) => {
   return (
     <td className={errorClass}>
       <input
@@ -13,4 +13,4 @@ const ErrorsInfoTableData = ({ handleChange, value, name, errorClass }) => {
   );
 };
 
-export default ErrorsInfoTableData;
+export default ErrorsInfoTableDataCell;

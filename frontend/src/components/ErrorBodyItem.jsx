@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ErrorsInfoTableData from "./ErrorsInfoTableData";
+import ErrorsInfoTableDataCell from "./ErrorsInfoTableDataCell";
 import { toastifyWarning } from "../helpers/toastify";
 
 const ErrorBodyItem = ({
@@ -41,7 +41,7 @@ const ErrorBodyItem = ({
     <tr>
       {excelOriginalKeys?.map((item, index) => {
         return (
-          <ErrorsInfoTableData
+          <ErrorsInfoTableDataCell
             key={index}
             handleChange={handleChange}
             value={

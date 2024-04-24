@@ -16,11 +16,11 @@ const ErrorsInfo = ({ errors }) => {
   }, [excelKeys]);
 
   const updateTempsAndRemoveErrors = (updatedDataRow) => {
-    const a = {};
+    const newUpdateDataRow = {};
     Object.entries(matchs).forEach(([key, value]) => {
-      a[value] = updatedDataRow[key];
+      newUpdateDataRow[value] = updatedDataRow[key];
     });
-    dispatch(updateData({ ...a, id: updatedDataRow.id }));
+    dispatch(updateData({ ...newUpdateDataRow, id: updatedDataRow.id }));
   };
 
   if (errors?.length > 0) {
