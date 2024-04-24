@@ -8,10 +8,18 @@ class SaveController {
 
     for (const item of data) {
       const dynamicFields = {};
-
-      if (item?.age) dynamicFields.age = item.age;
-      if (item?.bloodType !== undefined)
-        dynamicFields.bloodType = item?.bloodType;
+      for (const key in item) {
+        if (
+          key !== "firstName" &&
+          key !== "lastName" &&
+          key !== "salaryType" &&
+          key !== "salaryAmount" &&
+          key !== "annualLeaveLimit" &&
+          key !== "emailAddress"
+        ) {
+          dynamicFields[key] = item[key];
+        }
+      }
 
       personelsData.push({
         firstName: item.firstName,
