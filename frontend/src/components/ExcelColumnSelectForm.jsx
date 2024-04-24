@@ -17,7 +17,7 @@ const ExcelColumnSelectForm = ({ matchesData, onUpdate }) => {
   };
 
   return (
-    <form style={{}} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       {matchesData.dbKeys?.map((dbKey, index) => (
         <div
           style={{

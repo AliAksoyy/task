@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uploadExcel } from "./asyncAction";
+import { uploadTestExcel } from "./asyncAction";
 import { toastifyError } from "../../helpers/toastify";
 
 const initialState = {
@@ -31,10 +31,10 @@ const uploadSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(uploadExcel.pending, (state, { payload }) => {
+      .addCase(uploadTestExcel.pending, (state, { payload }) => {
         state.loading = true;
       })
-      .addCase(uploadExcel.fulfilled, (state, { payload }) => {
+      .addCase(uploadTestExcel.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.uploadData = {
           errors: payload.errors?.map((err) => ({
@@ -45,7 +45,7 @@ const uploadSlice = createSlice({
         };
         state.matchs = payload.frontMatches;
       })
-      .addCase(uploadExcel.rejected, (state, { error }) => {
+      .addCase(uploadTestExcel.rejected, (state, { error }) => {
         state.loading = false;
         toastifyError(error.message);
       });

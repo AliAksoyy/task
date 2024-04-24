@@ -1,8 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const uploadExcel = createAsyncThunk(
-  "uploadExcel",
+const uploadTestExcel = createAsyncThunk(
+  "uploadTestExcel",
   async ({ matches, fileName }) => {
     const res = await axios.post("http://localhost:5000/upload/test", {
       matches,
@@ -13,4 +13,4 @@ const uploadExcel = createAsyncThunk(
   }
 );
 
-export { uploadExcel };
+export { uploadTestExcel };
