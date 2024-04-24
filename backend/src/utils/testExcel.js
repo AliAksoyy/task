@@ -17,8 +17,6 @@ const frontMatches = {
   C: "salaryAmount",
   D: "age", // default value
   E: "bloodType",
-  F: "boy",
-  G: "fsa",
 };
 
 const matchs = {
@@ -28,8 +26,6 @@ const matchs = {
   salaryAmount: "salaryAmount",
   D: "age", // default value
   E: "bloodType",
-  F: "boy",
-  G: "fsa",
 };
 
 const testExcel = async (fileName, matches) => {

@@ -18,6 +18,7 @@ class SaveController {
         salaryType: item.salaryType,
         salaryAmount: item.salaryAmount,
         annualLeaveLimit: item.annualLeaveLimit,
+        emailAddress: item.emailAddress,
         dynamicFields: dynamicFields,
       });
     }
