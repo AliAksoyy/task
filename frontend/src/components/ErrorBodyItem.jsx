@@ -44,9 +44,23 @@ const ErrorBodyItem = ({
           <ErrorsInfoTableData
             key={index}
             handleChange={handleChange}
-            value={updatedDataRow[item]}
+            value={
+              item === "E" && updatedDataRow[item] === 0
+                ? "0"
+                : updatedDataRow[item]
+            }
             name={[item]}
-            errorClass={!updatedDataRow[item] ? "bg-danger" : "bg-success"}
+            errorClass={
+              item === "E" && updatedDataRow[item] === 0
+                ? "bg-success"
+                : (item !== "D" || item !== "C") && !updatedDataRow[item]
+                ? "bg-danger"
+                : item === "D" && typeof updatedDataRow[item] != "number"
+                ? "bg-danger"
+                : item === "C" && typeof updatedDataRow[item] != "number"
+                ? "bg-danger"
+                : "bg-success"
+            }
           />
         );
       })}
