@@ -65,42 +65,6 @@ const ErrorBodyItem = ({
         );
       })}
 
-      {/* <ErrorsInfoTableData
-        handleChange={handleChange}
-        name={"personelSurname"}
-        value={updatedDataRow?.personelSurname}
-        errorClass={
-          !updatedDataRow?.personelSurname?.trim() ? "bg-danger" : "bg-success"
-        }
-      />
-      <ErrorsInfoTableData
-        handleChange={handleChange}
-        name={"netSalary"}
-        value={updatedDataRow?.netSalary}
-        errorClass={
-          isNaN(updatedDataRow?.netSalary) ? "bg-danger" : "bg-success"
-        }
-      />
-      <ErrorsInfoTableData
-        handleChange={handleChange}
-        name={"age"}
-        value={updatedDataRow?.age}
-        errorClass={isNaN(updatedDataRow?.age) ? "bg-danger" : "bg-success"}
-      />
-      <ErrorsInfoTableData
-        handleChange={handleChange}
-        name={"bloodType"}
-        value={
-          updatedDataRow?.bloodType === 0 ? "0" : updatedDataRow?.bloodType
-        }
-        errorClass={
-          updatedDataRow.bloodType === undefined ||
-          updatedDataRow.bloodType === ""
-            ? "bg-danger"
-            : "bg-success"
-        }
-      /> */}
-
       <td className="bg-primary">
         <div onClick={updateErrorExcel} className="errorUpdate">
           Update
