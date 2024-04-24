@@ -10,7 +10,8 @@ class SaveController {
       const dynamicFields = {};
 
       if (item?.age) dynamicFields.age = item.age;
-      if (item?.bloodType) dynamicFields.bloodType = item.bloodType;
+      if (item?.bloodType !== undefined)
+        dynamicFields.bloodType = item?.bloodType;
 
       personelsData.push({
         firstName: item.firstName,
