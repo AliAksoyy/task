@@ -19,6 +19,7 @@ class UploadController {
       data: {
         fileName: req.file.originalname,
         excelKeys: Object.values(result.Sayfa1[0]),
+        excelOriginalKeys: Object.keys(result.Sayfa1[0]),
         dbKeys: [
           "firstName",
           "lastName",

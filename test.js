@@ -40,3 +40,24 @@ Object.keys(matchs).forEach((key) => {
     // hatalı listesine ekleme
   }
 });
+
+
+//  if (
+//    "D" in matchedKeys ||
+//    "E" in matchedKeys ||
+//    "F" in matchedKeys ||
+//    "G" in matchedKeys
+//  ) {
+//    matchedKeys = {
+//      ...matchedKeys,
+//      [customKey.D]: customKey.D,
+//      [customKey.E]: customKey.E,
+//      [customKey.F]: customKey.F,
+//      [customKey.G]: customKey.G,
+//    };
+//  }
+
+//  const { D, E, F, G, ...remainingKeys } = matchedKeys;
+//  matchedKeys = remainingKeys;
+
+//  console.log("matchedKeys", matchedKeys);

@@ -2,30 +2,34 @@ import React, { useState } from "react";
 import ErrorsInfoTableData from "./ErrorsInfoTableData";
 import { toastifyWarning } from "../helpers/toastify";
 
-const ErrorBodyItem = ({ dataRow, updateTempsAndRemoveErrors }) => {
+const ErrorBodyItem = ({
+  dataRow,
+  updateTempsAndRemoveErrors,
+  excelOriginalKeys,
+}) => {
   const [updatedDataRow, setUpdatedDataRow] = useState(dataRow);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "netSalary" || name === "age") {
+    if (name === "C" || name === "D") {
       isNaN(value) && toastifyWarning("Lütfen Number Değer Giriiniz");
     }
 
     const updatedData = {
       ...updatedDataRow,
-      [name]: name === "age" || name === "netSalary" ? Number(value) : value,
+      [name]: name === "D" || name === "C" ? Number(value) : value,
     };
     setUpdatedDataRow(updatedData);
   };
 
   const updateErrorExcel = () => {
     if (
-      typeof updatedDataRow.personelName === "undefined" ||
-      typeof updatedDataRow.personelSurname === "undefined" ||
-      typeof updatedDataRow.bloodType === "undefined" ||
-      typeof updatedDataRow.age !== "number" ||
-      typeof updatedDataRow.netSalary !== "number"
+      excelOriginalKeys.some(
+        (key) => typeof updatedDataRow[key] === "undefined"
+      ) ||
+      typeof updatedDataRow.C !== "number" ||
+      typeof updatedDataRow.D !== "number"
     ) {
       toastifyWarning("Değerleriniz hatalı, Lütfen düzgün değer giriniz");
       return;
@@ -35,15 +39,19 @@ const ErrorBodyItem = ({ dataRow, updateTempsAndRemoveErrors }) => {
   };
   return (
     <tr>
-      <ErrorsInfoTableData
-        handleChange={handleChange}
-        value={updatedDataRow?.personelName}
-        name={"personelName"}
-        errorClass={
-          !updatedDataRow?.personelName?.trim() ? "bg-danger" : "bg-success"
-        }
-      />
-      <ErrorsInfoTableData
+      {excelOriginalKeys?.map((item, index) => {
+        return (
+          <ErrorsInfoTableData
+            key={index}
+            handleChange={handleChange}
+            value={updatedDataRow[item]}
+            name={[item]}
+            errorClass={!updatedDataRow[item] ? "bg-danger" : "bg-success"}
+          />
+        );
+      })}
+
+      {/* <ErrorsInfoTableData
         handleChange={handleChange}
         name={"personelSurname"}
         value={updatedDataRow?.personelSurname}
@@ -77,7 +85,7 @@ const ErrorBodyItem = ({ dataRow, updateTempsAndRemoveErrors }) => {
             ? "bg-danger"
             : "bg-success"
         }
-      />
+      /> */}
 
       <td className="bg-primary">
         <div onClick={updateErrorExcel} className="errorUpdate">

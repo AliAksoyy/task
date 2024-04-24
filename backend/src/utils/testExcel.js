@@ -11,17 +11,30 @@ const newPersonelSchema = {
   annualLeaveLimit: 15, // required
   emailAddress: "", // nullable
 };
+const frontMatches = {
+  A: "firstName",
+  B: "lastName",
+  C: "salaryAmount",
+  D: "age", // default value
+  E: "bloodType",
+  F: "boy",
+  G: "fsa",
+};
+
+const matchs = {
+  // optionlarla seçilen data
+  firstName: "firstName",
+  lastName: "lastName",
+  salaryAmount: "salaryAmount",
+  D: "age", // default value
+  E: "bloodType",
+  F: "boy",
+  G: "fsa",
+};
 
 const testExcel = async (fileName, matches) => {
   const result = excelToJson({
     sourceFile: path.join(__dirname, "..", "uploads", fileName),
-    columnToKey: {
-      A: "personelName",
-      B: "personelSurname",
-      C: "netSalary",
-      D: "age",
-      E: "bloodType",
-    },
   });
 
   const errors = [];
@@ -29,7 +42,7 @@ const testExcel = async (fileName, matches) => {
 
   const customKey = result.Sayfa1[0];
 
-  const matchedKeys = matchKeys(matches, customKey);
+  let matchedKeys = matchKeys(matches, customKey);
 
   result.Sayfa1.slice(1).forEach((personel) => {
     let isValid = true;
@@ -42,7 +55,7 @@ const testExcel = async (fileName, matches) => {
       if (value === "Default") {
         pers[key] = newPersonelSchema[key] || "";
       } else {
-        pers[key] = personel[value];
+        pers[matchs[key]] = personel[value];
       }
     });
 
@@ -64,7 +77,7 @@ const testExcel = async (fileName, matches) => {
     }
   });
 
-  return { errors, temps };
+  return { errors, temps, frontMatches };
 };
 
 module.exports = testExcel;

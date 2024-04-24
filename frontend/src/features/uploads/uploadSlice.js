@@ -5,6 +5,7 @@ import { toastifyError } from "../../helpers/toastify";
 const initialState = {
   loading: false,
   uploadData: { errors: [], temps: [] },
+  matchs: null,
 };
 
 const uploadSlice = createSlice({
@@ -18,12 +19,7 @@ const uploadSlice = createSlice({
         }),
         temps: [
           {
-            id: payload.id,
-            firstName: payload.personelName,
-            lastName: payload.personelSurname,
-            age: payload.age,
-            salaryAmount: payload.netSalary,
-            bloodType: payload.bloodType,
+            ...payload,
             salaryType: "TL",
             annualLeaveLimit: 15,
             emailAddress: null, // default,
@@ -47,6 +43,7 @@ const uploadSlice = createSlice({
           })),
           temps: payload.temps,
         };
+        state.matchs = payload.frontMatches;
       })
       .addCase(uploadExcel.rejected, (state, { error }) => {
         state.loading = false;
