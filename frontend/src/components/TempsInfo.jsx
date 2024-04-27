@@ -12,6 +12,7 @@ const TempsInfo = ({ src, setTemps }) => {
     const userConfirmed = await confirm(
       "Customer Data Our DataBase Kaydetmek İstediğinize Emin misiniz?"
     );
+
     
     if (userConfirmed) {
       try {
