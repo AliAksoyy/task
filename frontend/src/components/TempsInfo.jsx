@@ -3,6 +3,7 @@ import ReactJson from "react-json-view";
 import axios from "axios";
 import { confirm } from "../util/confirm";
 import { useNavigate } from "react-router-dom";
+import { toastifyError, toastifySuccess } from "../helpers/toastify";
 
 const TempsInfo = ({ src, setTemps }) => {
   const navigate = useNavigate();
@@ -11,13 +12,16 @@ const TempsInfo = ({ src, setTemps }) => {
     const userConfirmed = await confirm(
       "Customer Data Our DataBase Kaydetmek İstediğinize Emin misiniz?"
     );
+
+    
     if (userConfirmed) {
       try {
-        console.log(src);
         await axios.post("http://localhost:5000/save", src);
+        toastifySuccess("DataBase başarılı bir şekilde kayıt olmuştur");
         navigate("/succesfull");
       } catch (error) {
         console.log(error);
+        toastifyError(error.message);
       }
     }
   };

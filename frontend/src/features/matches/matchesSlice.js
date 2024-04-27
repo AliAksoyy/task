@@ -4,7 +4,7 @@ import { toastifyError } from "../../helpers/toastify";
 
 const initialState = {
   loading: false,
-  matches: { fileName: null, excelKeys: [], dbKeys: [] },
+  matches: { fileName: null, excelKeys: [], dbKeys: [], excelOriginalKeys: [] },
 };
 
 const matchesSlice = createSlice({
@@ -22,6 +22,7 @@ const matchesSlice = createSlice({
           fileName: payload.fileName,
           excelKeys: payload.excelKeys,
           dbKeys: payload.dbKeys,
+          excelOriginalKeys: payload.excelOriginalKeys,
         };
       })
       .addCase(matchesExcel.rejected, (state, { error }) => {

@@ -2,11 +2,9 @@ import * as React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { confirmable } from "react-confirm";
-import { toastifySuccess, toastifyWarning } from "../helpers/toastify";
-
+import { toastifyWarning } from "../helpers/toastify";
 
 const Confirmation = (props) => {
- 
   return (
     <div className="static-modal">
       <Modal
@@ -32,7 +30,6 @@ const Confirmation = (props) => {
             className="button-l"
             onClick={() => {
               props.proceed(true);
-              toastifySuccess("DataBase başarılı bir şekilde kayıt olmuştur");
             }}
           >
             {props.okLabel || "ok"}

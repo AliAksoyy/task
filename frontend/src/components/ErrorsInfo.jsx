@@ -8,13 +8,19 @@ const ErrorsInfo = ({ errors }) => {
   const [tableColumns, setTableColumns] = useState([]);
 
   const { excelKeys } = useSelector((state) => state.matches.matches);
+  const { excelOriginalKeys } = useSelector((state) => state.matches.matches);
+  const { matchs } = useSelector((state) => state.upload);
 
   useEffect(() => {
     setTableColumns([...excelKeys, "Update"]);
   }, [excelKeys]);
 
   const updateTempsAndRemoveErrors = (updatedDataRow) => {
-    dispatch(updateData(updatedDataRow));
+    const newUpdateDataRow = {};
+    Object.entries(matchs).forEach(([key, value]) => {
+      newUpdateDataRow[value] = updatedDataRow[key];
+    });
+    dispatch(updateData({ ...newUpdateDataRow, id: updatedDataRow.id }));
   };
 
   if (errors?.length > 0) {
@@ -42,6 +48,7 @@ const ErrorsInfo = ({ errors }) => {
                   key={personel.id}
                   dataRow={personel}
                   updateTempsAndRemoveErrors={updateTempsAndRemoveErrors}
+                  excelOriginalKeys={excelOriginalKeys}
                 />
               );
             })}

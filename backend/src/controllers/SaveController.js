@@ -8,9 +8,18 @@ class SaveController {
 
     for (const item of data) {
       const dynamicFields = {};
-
-      if (item.age) dynamicFields.age = item.age;
-      if (item.bloodType) dynamicFields.bloodType = item.bloodType;
+      for (const key in item) {
+        if (
+          key !== "firstName" &&
+          key !== "lastName" &&
+          key !== "salaryType" &&
+          key !== "salaryAmount" &&
+          key !== "annualLeaveLimit" &&
+          key !== "emailAddress"
+        ) {
+          dynamicFields[key] = item[key];
+        }
+      }
 
       personelsData.push({
         firstName: item.firstName,
@@ -18,6 +27,7 @@ class SaveController {
         salaryType: item.salaryType,
         salaryAmount: item.salaryAmount,
         annualLeaveLimit: item.annualLeaveLimit,
+        emailAddress: item.emailAddress,
         dynamicFields: dynamicFields,
       });
     }

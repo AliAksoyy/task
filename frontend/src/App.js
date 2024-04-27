@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadExcel } from "./features/uploads/asyncAction";
+import { uploadTestExcel } from "./features/uploads/asyncAction";
 import LoginLoading from "./components/Loading/LoginLoading";
 import ErrorsInfo from "./components/ErrorsInfo";
 import TempsInfo from "./components/TempsInfo";
@@ -51,7 +51,7 @@ function App() {
   };
   const matchesKey = async (matchesColumns) => {
     dispatch(
-      uploadExcel({ matches: matchesColumns, fileName: matches.fileName })
+      uploadTestExcel({ matches: matchesColumns, fileName: matches.fileName })
     );
     setShow(true);
     setNestedShow(true);

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uploadExcel } from "./asyncAction";
+import { uploadTestExcel } from "./asyncAction";
 import { toastifyError } from "../../helpers/toastify";
 
 const initialState = {
   loading: false,
   uploadData: { errors: [], temps: [] },
+  matchs: null,
 };
 
 const uploadSlice = createSlice({
@@ -18,12 +19,7 @@ const uploadSlice = createSlice({
         }),
         temps: [
           {
-            id: payload.id,
-            firstName: payload.personelName,
-            lastName: payload.personelSurname,
-            age: payload.age,
-            salaryAmount: payload.netSalary,
-            bloodType: payload.bloodType,
+            ...payload,
             salaryType: "TL",
             annualLeaveLimit: 15,
             emailAddress: null, // default,
@@ -35,10 +31,10 @@ const uploadSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(uploadExcel.pending, (state, { payload }) => {
+      .addCase(uploadTestExcel.pending, (state, { payload }) => {
         state.loading = true;
       })
-      .addCase(uploadExcel.fulfilled, (state, { payload }) => {
+      .addCase(uploadTestExcel.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.uploadData = {
           errors: payload.errors?.map((err) => ({
@@ -47,8 +43,9 @@ const uploadSlice = createSlice({
           })),
           temps: payload.temps,
         };
+        state.matchs = payload.frontMatches;
       })
-      .addCase(uploadExcel.rejected, (state, { error }) => {
+      .addCase(uploadTestExcel.rejected, (state, { error }) => {
         state.loading = false;
         toastifyError(error.message);
       });
